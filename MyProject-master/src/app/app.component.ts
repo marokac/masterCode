@@ -1,6 +1,8 @@
 import { Component, Inject, HostListener } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { DOCUMENT } from '@angular/platform-browser';
+import { MatDialog } from '@angular/material';
+import { DialogComponentComponent } from './dialog-component/dialog-component.component';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +20,7 @@ export class AppComponent  {
   cartData: any = { itemNum: "5", value: "My Cart" };
   public fixed: boolean = false;
   searchForm: any;
-  constructor(@Inject(DOCUMENT) private doc: Document, private formBuilder: FormBuilder, ) {
+  constructor(@Inject(DOCUMENT) private doc: Document, private formBuilder: FormBuilder, public dialog: MatDialog ) {
     setTimeout(() => { this.allowNewServer = true; }, 2000);
   }
   onCreateServerSession() {
@@ -37,6 +39,9 @@ export class AppComponent  {
 
   ngOnInit() {
     this.name = "Cedric";
+
+    ///i open the dilog here onit, you can open it by pressing a button or anywhere.
+    this.openDialog();
     //change data with real ones
     this.manu.push( { value: "Home",routerLink:"home" }, { value: "Login",routerLink:"login" }, 
     { value: "Register" ,routerLink:"app-addproduct"},{value:"Men",routerLink:"men"},{value:"Women",routerLink:"women"},
@@ -65,6 +70,21 @@ export class AppComponent  {
   clearSerch() {
     this.searchForm.controls['search'].setValue('');
     this.searchBusy = false;
+  }
+
+
+////////////////////////////////////
+//// use this function to open the dilog, any way in the application
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogComponentComponent, {
+      width: '350px',
+      data: {heading: 'Headring goes here', body: 'this is the body of the dilog, where ever you are in the application if you need a dilog ,add the massage to this part'}
+    });
+///////////////////////////////////////////////////
+//after the dilog is closed the action goes here
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
 }

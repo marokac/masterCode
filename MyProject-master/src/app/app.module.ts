@@ -59,6 +59,7 @@ import { UpdateUserComponent } from './update-user/update-user.component';
 import { ViewcustomerComponent } from './viewcustomer/viewcustomer.component';
 import {ToastaModule} from 'ngx-toasta';
 import {ToasterService} from './Login/ToastService';
+import { DialogComponentComponent } from './dialog-component/dialog-component.component';
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent},
@@ -120,6 +121,7 @@ const appRoutes: Routes = [
     MyNavbarComponent,
     UpdateUserComponent,
     ViewcustomerComponent,
+    DialogComponentComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
@@ -145,6 +147,7 @@ const appRoutes: Routes = [
     ToastaModule.forRoot()
   ],
   providers: [ServiceComponent, RegistrationService, CheckOutComponent, GetServiceFromSpring, ToasterService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogComponentComponent]
 })
 export class AppModule { }

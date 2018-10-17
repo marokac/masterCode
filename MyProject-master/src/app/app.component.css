@@ -235,6 +235,7 @@ cursor: pointer;
   color:white;
   padding:20px;
   text-align: center;
+  z-index:2000;
 }
 .social-container{
 padding:20px;
@@ -251,7 +252,7 @@ margin-right:20%;
   color:white;
   font-size:30px;
   width: 30%;
-  margin-left:40%;
+  margin-left:35%;
 }
 .social-icons i{
   padding:10px;
